@@ -1,0 +1,59 @@
+/*Root*/
+.wt-50-pd {
+  width: calc(50% - 10px);
+}
+
+.wt-50 {
+  width: 50%;
+}
+
+.wt-100 {
+  width: 100%;
+}
+
+.wt-90 {
+  width: calc(90% - 5px);
+}
+
+.wt-10 {
+  width: 10%;
+}
+
+.pd-input {
+  padding: 5px 12px;
+  line-height: 1.5rem;
+}
+
+.bd-top {
+  border-top: 1px solid #e1e3e5;
+}
+
+.show-1 {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.show-5 {
+  opacity: 1;
+  visibility: visible;
+  z-index: 5;
+  transition: all 0.4s ease;
+}
+.show-9 {
+  opacity: 1;
+  visibility: visible;
+  z-index: 99999999;
+  transition: all 0.4s ease;
+}
+
+textarea:focus,
+input:focus {
+  border: 2px solid #3ab0ff;
+}
+
+.bd-left {
+  border-left: 2px solid #2c6ecb;
+  background: #f2f7fe;
+}
