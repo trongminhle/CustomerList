@@ -399,13 +399,10 @@ h3.title-overview-customer {
 }
 
 .btn-primary {
-  background-color: #008060;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background-color: #03634b;
-  color: #fff;
+  background-color: #005640;
+  color: #6f7377;
+  /* cursor: default;
+  pointer-events: none; */
 }
 
 /*Modal list-country*/
@@ -458,4 +455,19 @@ h3.title-overview-customer {
 .item-country:active {
   border: 2px solid #1363df;
   border-radius: 5px;
+}
+
+/* Error mess  */
+
+.Polaris-Icon__Svg_375hu {
+  display: block;
+  height: 1.25rem;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  width: 1.25rem;
+}
+
+.erro-icon {
+  margin-right: 5px;
 }

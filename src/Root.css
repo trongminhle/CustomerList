@@ -57,3 +57,41 @@ input:focus {
   border-left: 2px solid #2c6ecb;
   background: #f2f7fe;
 }
+
+.mg-bt {
+  margin-bottom: 20px;
+}
+
+/* ErrorMessage */
+
+.btn-add {
+  background-color: #008060;
+  color: #fff;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.btn-add:hover {
+  background-color: #03634b;
+  color: #fff;
+}
+
+.add-error-email {
+  display: flex;
+  opacity: 1;
+  transition: all 0.2s ease;
+  fill: #d72c0d;
+  color: #d72c0d;
+  margin-top: 5px;
+}
+
+.remove-error-email {
+  display: none;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.error-bd {
+  background-color: #fff4f4;
+  border-color: #fd5749;
+}
