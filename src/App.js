@@ -224,26 +224,25 @@ function App() {
   const [errorMessageEmail, setErrorMessageEmail] = useState(false);
 
   const handleFirstnameChange = (e) => {
-    valueFirstname === "" ? setAddInstagram(false) : setAddInstagram(true);
-    let valueFirstname = e.target.value;
+    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
   const handleLastnameChange = (e) => {
-    let valueLastname = e.target.value;
+    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
   const handleEmailChange = (e) => {
+    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    let valueEmail = regex.test(e.target.value) ? e.target.value : undefined;
   };
 
   const handlePhoneChange = (e) => {
+    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
     setvaluePhone(e.target.value);
-    let valuePhone = e.target.value;
   };
 
   const handleNoteChange = (e) => {
-    let valueNote = e.target.value;
+    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
   const handleSubmit = () => {
