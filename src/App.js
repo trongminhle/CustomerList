@@ -222,36 +222,45 @@ function App() {
   const [valueNote, setValueNote] = useState();
   const [addInstagram, setAddInstagram] = useState(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState(false);
+  const [errorMessagePhone, setErrorMessagePhone] = useState(false);
 
   const handleFirstnameChange = (e) => {
-    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
+    let value = e.target.value;
+    value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
   const handleLastnameChange = (e) => {
-    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
+    let value = e.target.value;
+    value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
   const handleEmailChange = (e) => {
-    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
+    let value = e.target.value;
+    value.trim() === "" ? setAddInstagram(false) : setAddInstagram(true);
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    regex.test(value)
+      ? setErrorMessageEmail(false)
+      : setErrorMessageEmail(true);
+    value === "" ? setErrorMessageEmail(false) : console.log("false");
   };
 
   const handlePhoneChange = (e) => {
-    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
+    let value = e.target.value;
+    value === "" ? setAddInstagram(false) : setAddInstagram(true);
     setvaluePhone(e.target.value);
+    const regexp = /^\d{10,11}$/;
+    const checkingResult = regexp.exec(value);
+    // checkingResult ? console.log("true") : console.log("false");
   };
 
   const handleNoteChange = (e) => {
-    e.target.value === "" ? setAddInstagram(false) : setAddInstagram(true);
+    let value = e.target.value;
+    value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
-  const handleSubmit = () => {
-    setValueFirstname("");
-    setValueLastname("");
-    setValueEmail("");
-    setvaluePhone("");
-    setValueNote("");
-  };
+  const handleSubmit = () => {};
+
+  const hanldeFormchange = () => {};
 
   const handleClickaddcustomer = () => {
     setAddCustomer(true);
@@ -283,6 +292,7 @@ function App() {
     setvaluePhone(item.number);
     setUrlCountry(item.url);
     setShowCountry(false);
+    setAddInstagram(true);
   };
 
   return (
@@ -365,11 +375,20 @@ function App() {
         </div>
       </div>
       <div className={`add-customer ${addCustomer ? "show-5" : ""}`}>
-        <form type="submit" className="add-form">
+        <form
+          method="post"
+          onSubmit={(e) => hanldeFormchange(e)}
+          className="add-form"
+          id="from-1"
+        >
           <div className="add-customer-container">
             <div className="release-customer">
               <span>Reach more shoppers with Instagram product tags</span>
-              <button onClick={handleremovecustomer} className="btn-icon">
+              <button
+                type="button"
+                onClick={handleremovecustomer}
+                className="btn-icon"
+              >
                 <i className="fa-regular fa-x"></i>
               </button>
             </div>
@@ -378,7 +397,9 @@ function App() {
               <div className="customer-overview-content">
                 <div className="customer-overview-name mg-bt">
                   <div className="first-name wt-50-pd">
-                    <h5 className="title-first-name">First name</h5>
+                    <label htmlFor="firstname" className="title-first-name">
+                      First name
+                    </label>
                     <input
                       value={valueFirstname}
                       onChange={(e) => handleFirstnameChange(e)}
@@ -388,7 +409,9 @@ function App() {
                     />
                   </div>
                   <div className="last-name wt-50-pd">
-                    <h5 className="title-last-name">Last name</h5>
+                    <label htmlFor="lastname" className="title-last-name">
+                      Last name
+                    </label>
                     <input
                       value={valueLastname}
                       onChange={(e) => handleLastnameChange(e)}
@@ -399,7 +422,9 @@ function App() {
                   </div>
                 </div>
                 <div className="customer-overview-email mg-bt wt-100">
-                  <h5 className="title-email">Email</h5>
+                  <label htmlFor="email" className="title-email">
+                    Email
+                  </label>
                   <input
                     value={valueEmail}
                     onChange={(e) => handleEmailChange(e)}
@@ -431,17 +456,40 @@ function App() {
                 </div>
                 <div className="customer-overview-phone mg-bt wt-100">
                   <div className="title-phone wt-100 ">
-                    <h5>Phone number</h5>
+                    <label htmlFor="phone">Phone number</label>
                   </div>
                   <div className="input-phone-country">
                     <div className="phone-number-input wt-90">
                       <input
                         value={valuePhone}
                         onChange={(e) => handlePhoneChange(e)}
-                        className="wt-100 bd-input pd-input"
+                        className={`wt-100 bd-input pd-input ${
+                          errorMessagePhone ? "error-bd" : ""
+                        }`}
                         name="phone"
                         type="text"
                       />
+                      <div
+                        className={`${
+                          errorMessagePhone
+                            ? "add-error-phone"
+                            : "remove-error-phone"
+                        }`}
+                      >
+                        <span className="erro-icon">
+                          <svg
+                            viewBox="0 0 20 20"
+                            className="Polaris-Icon__Svg_375hu"
+                            focusable="false"
+                            aria-hidden="true"
+                          >
+                            <path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-9a1 1 0 0 0 2 0v-2a1 1 0 1 0-2 0v2zm0 4a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"></path>
+                          </svg>
+                        </span>
+                        <span className="error-text">
+                          Enter a valid phone number to use this delivery method
+                        </span>
+                      </div>
                     </div>
                     <div className="country-number wt-10">
                       <button
@@ -492,7 +540,9 @@ function App() {
               </div>
               <div className="customer-overview-content">
                 <div className="customer-overview-email wt-100">
-                  <h3 className="title-note">Note</h3>
+                  <label htmlFor="comment" className="title-note">
+                    Note
+                  </label>
                   <textarea
                     value={valueNote}
                     onChange={(e) => handleNoteChange(e)}
@@ -505,7 +555,11 @@ function App() {
             <div className="modal-footer-content bd-top">
               <div className="footer-alignmentCenter">
                 <div className="btn-learn">
-                  <button onClick={handleButtonLearn} className="btn-footer">
+                  <button
+                    type="button"
+                    onClick={handleButtonLearn}
+                    className="btn-footer"
+                  >
                     Learn more
                   </button>
                 </div>

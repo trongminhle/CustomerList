@@ -264,7 +264,7 @@ h3.title-overview-customer {
 }
 
 .title-last-name,
-.title-phone h5,
+.title-phone label,
 .title-email,
 .title-first-name {
   margin-bottom: 5px;
@@ -349,7 +349,7 @@ h3.title-overview-customer {
 .input-phone-country {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .phone-number-input {
@@ -401,8 +401,8 @@ h3.title-overview-customer {
 .btn-primary {
   background-color: #005640;
   color: #6f7377;
-  /* cursor: default;
-  pointer-events: none; */
+  cursor: default;
+  pointer-events: none;
 }
 
 /*Modal list-country*/

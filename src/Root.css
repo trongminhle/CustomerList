@@ -92,6 +92,21 @@ input:focus {
 }
 
 .error-bd {
-  background-color: #fff4f4;
+  background-color: #fff4f4 !important;
   border-color: #fd5749;
+}
+
+.add-error-phone {
+  display: flex;
+  opacity: 1;
+  transition: all 0.2s ease;
+  fill: #d72c0d;
+  color: #d72c0d;
+  margin-top: 5px;
+}
+
+.remove-error-phone {
+  display: none;
+  opacity: 0;
+  transition: all 0.2s ease;
 }
