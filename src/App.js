@@ -1,6 +1,7 @@
 import "./App.css";
 import "./Root.css";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
+import "intl-tel-input/build/css/intlTelInput.css";
 
 function App() {
   const titleLisst = [
@@ -24,67 +25,67 @@ function App() {
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/bcc8ac62a2436cb9f808e37f4ccee13a40b0146196150318487d20382d791c26.svg",
       firtsnumber: "Australia (+61)",
-      number: "+61",
+      number: "+61 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/dba77f84783603578980c0ae9801d617e27ff9acca6c45be81264a6b1d7df8b6.svg",
       firtsnumber: "Austria (+43)",
-      number: "+43",
+      number: "+43 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/bdea9cf33394beea9912609c85ae10f2151d390f6aa588b96546039446c0b6c6.svg",
       firtsnumber: "Anguilla (+1)",
-      number: "+1",
+      number: "+1 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/dcd0178b83005514907ec37082d5c6c4e36da42c4c7df768a54060a31521537c.svg",
       firtsnumber: "Argentina (+54)",
-      number: "+54",
+      number: "+54 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/806dd1aa913ace4035ededeac4c1708e323909c7bf213b6b3e4245109aa8ba02.svg",
       firtsnumber: "Belgium (+32)",
-      number: "+32",
+      number: "+32 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/a37a6bc1fe59000adbe09ea8ac216e2b66ba728742e119349bab34d1fd1b3c11.svg",
       firtsnumber: "Colombia (+57)",
-      number: "+57",
+      number: "+57 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/dba77f84783603578980c0ae9801d617e27ff9acca6c45be81264a6b1d7df8b6.svg",
       firtsnumber: "Brazil (+55)",
-      number: "+55",
+      number: "+55 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/1761097966133c21c47ac7ed46a0ecd73a08b1037a4500ab2145311b33221562.svg",
       firtsnumber: "Brunei (+673)",
-      number: "+673",
+      number: "+673 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/da1b1ba84a00fbd98e657f06943e7022e7912a1ba32b44e5cdb1c70ac1edf1d1.svg",
       firtsnumber: "Brazil (+55)",
-      number: "+55",
+      number: "+55 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/dba77f84783603578980c0ae9801d617e27ff9acca6c45be81264a6b1d7df8b6.svg",
       firtsnumber: "Curaçao (+599)",
-      number: "+599",
+      number: "+599 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/3d6a06718f3daff15fe3cfec5b834a4124bddf906199ad828a0666f581d7aed7.svg",
       firtsnumber: "Ascension Island (+247)",
-      number: "+247",
+      number: "+247 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/d9453819872a7de3c717436f9d1a7e6650a3bec2d72bdfc1f581b80cf6bcc278.svg",
       firtsnumber: "Yemen (+967)",
-      number: "+967",
+      number: "+967 ",
     },
     {
       url: "https://cdn.shopify.com/shopifycloud/web/assets/v1/2282da174377ff774608494e12061f10177499844180e447e23a6940a609ea0b.svg",
       firtsnumber: "Uzbekistan (+998)",
-      number: "+998",
+      number: "+998 ",
     },
   ];
 
@@ -212,13 +213,10 @@ function App() {
 
   const [addCustomer, setAddCustomer] = useState();
   const [showOverlay, setShowOverlay] = useState();
-  const [showCountry, setShowCountry] = useState(false);
-  const [countryName, setCountryName] = useState();
-  const [urlCountry, setUrlCountry] = useState();
-  const [valuePhone, setvaluePhone] = useState();
-  const [valueEmail, setValueEmail] = useState();
   const [valueFirstname, setValueFirstname] = useState();
   const [valueLastname, setValueLastname] = useState();
+  const [valueEmail, setValueEmail] = useState();
+  const [valuePhone, setvaluePhone] = useState();
   const [valueNote, setValueNote] = useState();
   const [addInstagram, setAddInstagram] = useState(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState(false);
@@ -244,23 +242,20 @@ function App() {
     value === "" ? setErrorMessageEmail(false) : console.log("false");
   };
 
-  const handlePhoneChange = (e) => {
-    let value = e.target.value;
-    value === "" ? setAddInstagram(false) : setAddInstagram(true);
-    setvaluePhone(e.target.value);
-    const regexp = /^\d{10,11}$/;
-    const checkingResult = regexp.exec(value);
-    // checkingResult ? console.log("true") : console.log("false");
-  };
+  const handlePhoneChange = (e) => {};
 
   const handleNoteChange = (e) => {
     let value = e.target.value;
     value === "" ? setAddInstagram(false) : setAddInstagram(true);
   };
 
-  const handleSubmit = () => {};
-
-  const hanldeFormchange = () => {};
+  const handleSubmit = () => {
+    setValueFirstname("");
+    setValueLastname("");
+    setValueNote("");
+    setValueEmail("");
+    setvaluePhone("");
+  };
 
   const handleClickaddcustomer = () => {
     setAddCustomer(true);
@@ -273,26 +268,14 @@ function App() {
     setvaluePhone("");
   };
 
-  const handleClickcountry = () => {
-    setShowCountry(!showCountry);
-  };
+  const hanldeFormchange = () => {};
 
-  const handleRemoveCountry = () => {
-    setShowCountry(false);
-  };
+  const handleOverlayRemoveCountry = () => {};
 
   const handleButtonLearn = () => {
     setAddCustomer(false);
     setShowOverlay(false);
     setvaluePhone("");
-  };
-
-  const handleCountryChange = (item) => {
-    setCountryName(item.firtsnumber);
-    setvaluePhone(item.number);
-    setUrlCountry(item.url);
-    setShowCountry(false);
-    setAddInstagram(true);
   };
 
   return (
@@ -469,7 +452,7 @@ function App() {
                         name="phone"
                         type="text"
                       />
-                      <div
+                      {/* <div
                         className={`${
                           errorMessagePhone
                             ? "add-error-phone"
@@ -489,46 +472,9 @@ function App() {
                         <span className="error-text">
                           Enter a valid phone number to use this delivery method
                         </span>
-                      </div>
+                      </div> */}
                     </div>
-                    <div className="country-number wt-10">
-                      <button
-                        onClick={handleClickcountry}
-                        className="btn-country"
-                        type="button"
-                      >
-                        <span className="ensign-country wt-50">
-                          <img alt="" src={urlCountry} />
-                        </span>
-                        <span className="btn-icon-down wt-50">
-                          <i className="fa-solid fa-caret-down"></i>
-                        </span>
-                      </button>
-                      <div
-                        className={`list-number-country ${
-                          showCountry ? "show-9" : ""
-                        }`}
-                      >
-                        <ul className="list-item">
-                          <p>Country</p>
-                          {listcountry.map((item, index) => (
-                            <li
-                              onClick={() => handleCountryChange(item)}
-                              className={`item-country ${
-                                item.firtsnumber === countryName
-                                  ? "bd-left"
-                                  : null
-                              }`}
-                              key={index}
-                            >
-                              <span className="btn-item-country">
-                                {item.firtsnumber}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                    <div className="country-number wt-10"></div>
                   </div>
                 </div>
               </div>
@@ -580,7 +526,7 @@ function App() {
         </form>
       </div>
       <div
-        onClick={handleRemoveCountry}
+        onClick={handleOverlayRemoveCountry}
         className={`add-customer-overlay ${showOverlay ? "show-1" : null}`}
       ></div>
     </div>
